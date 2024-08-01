@@ -1,9 +1,17 @@
+"use client";
+
 import React, { useState } from 'react';
 import { evaluate } from 'mathjs';
+
+interface HistoryItem {
+    expression: string;
+    result: string;
+}
 
 const BasicCalculator: React.FC = () => {
     const [expression, setExpression] = useState<string>('');
     const [result, setResult] = useState<string>('');
+    const [history, setHistory] = useState<HistoryItem[]>([]);
 
     const handleButtonClick = (value: string) => {
         setExpression((prev) => prev + value);
@@ -11,7 +19,9 @@ const BasicCalculator: React.FC = () => {
 
     const calculateResult = () => {
         try {
-        setResult(evaluate(expression).toString());
+        const evaluatedResult = evaluate(expression).toString();
+        setResult(evaluatedResult);
+        setHistory([{ expression, result: evaluatedResult }, ...history]);
         } catch {
         setResult('Error');
         }
@@ -20,6 +30,11 @@ const BasicCalculator: React.FC = () => {
     const clear = () => {
         setExpression('');
         setResult('');
+    };
+
+    const loadFromHistory = (item: HistoryItem) => {
+        setExpression(item.expression);
+        setResult(item.result);
     };
 
     return (
@@ -74,6 +89,16 @@ const BasicCalculator: React.FC = () => {
             Clear
             </button>
             <div className="mt-4 text-right text-2xl">{result}</div>
+            <div className="mt-4">
+            <h3 className="text-xl font-bold mb-2">Historial</h3>
+            <ul className="list-disc list-inside">
+                {history.map((item, index) => (
+                <li key={index} onClick={() => loadFromHistory(item)} className="cursor-pointer">
+                    {item.expression} = {item.result}
+                </li>
+                ))}
+            </ul>
+            </div>
         </div>
         </div>
     );
