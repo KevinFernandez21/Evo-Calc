@@ -11,7 +11,7 @@ const Home: React.FC = () => {
   const renderPage = () => {
     switch (activePage) {
       case 'principal':
-        return <Principal />;
+        return <Principal setActivePage={setActivePage}/>;
       case 'basic':
         return <BasicCalculator />;
       case 'derivative':

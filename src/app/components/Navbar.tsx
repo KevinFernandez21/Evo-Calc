@@ -25,7 +25,7 @@ const Navbar: React.FC<NavbarProps> = ({ setActivePage }) => (
             onClick={() => setActivePage('derivative')}
             className="text-white mx-2"
             >
-            Derivadas
+            Gráfica
             </button>
         </div>
         </div>
