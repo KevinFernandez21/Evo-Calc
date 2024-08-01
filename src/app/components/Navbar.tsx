@@ -7,7 +7,7 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ setActivePage }) => (
     <nav className="bg-gray-800 p-4">
         <div className="flex justify-between">
-        <div className="text-white text-xl font-bold">Calculadora Científica</div>
+        <div className="text-white text-xl font-bold">Evo-Calc</div>
         <div>
             <button
             onClick={() => setActivePage('basic')}
