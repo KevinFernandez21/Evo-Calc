@@ -9,6 +9,12 @@ const Navbar: React.FC<NavbarProps> = ({ setActivePage }) => (
         <div className="flex justify-between">
         <div className="text-white text-xl font-bold">Evo-Calc</div>
         <div>
+        <button
+            onClick={() => setActivePage('principal')}
+            className="text-white mx-2"
+            >
+            Inicio
+            </button>
             <button
             onClick={() => setActivePage('basic')}
             className="text-white mx-2"
